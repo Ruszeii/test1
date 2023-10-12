@@ -1,1 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Task List</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Task List</h1>
+        <form id="task-form">
+            <div class="form-group">
+                <label for="task-title">Task Title</label>
+                <input type="text" id="task-title" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="task-priority">Task Priority</label>
+                <select id="task-priority" class="form-control">
+                    <option value="low">Low Priority</option>
+                    <option value="medium">Medium Priority</option>
+                    <option value="high">High Priority</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Task Status</label>
+                <div class="form-check">
+                    <input type="radio" name="task-status" value="completed" class="form-check-input" id="status-completed">
+                    <label class="form-check-label" for="status-completed">Completed</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="task-status" value="pending" class="form-check-input" id="status-pending" checked>
+                    <label class="form-check-label" for="status-pending">Pending</label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Task</button>
+        </form>
+        <ul id="task-list" class="list-group mt-3">
+            <!-- Tasks will be added here dynamically -->
+        </ul>
+    </div>
 
+    <script src="script.js"></script>
+</body>
+</html>
