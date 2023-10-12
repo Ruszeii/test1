@@ -9,7 +9,7 @@ body {
 .container {
     max-width: 600px;
     margin: 0 auto;
-    background-color: #fff;
+    background-color: darkblue;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
@@ -55,7 +55,7 @@ h1 {
 }
 
 .task-priority {
-    color: #333;
+    color: white;
     margin-right: 10px;
 }
 
@@ -71,12 +71,12 @@ h1 {
 }
 
 .remove-button:hover {
-    background-color: #ff6b6b;
+    background-color: red;
     color: #fff;
 }
 
 .complete-button:hover {
-    background-color: #5cb85c;
+    background-color: green;
     color: #fff;
 }
 
