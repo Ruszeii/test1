@@ -23,35 +23,49 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-   function addTaskToDOM(task) {
-    const li = document.createElement("li");
-    li.className = `list-group-item ${task.priority}`;
-    li.innerHTML = `
-        <span class="task-title">${task.title}</span>
-        <span class="task-priority">Priority: ${task.priority}</span>
-        <span class="task-status">Status: ${task.status}</span>
-        <button class="btn btn-danger float-right" onclick="removeTask(this)">Remove</button>
-        <button class="btn btn-success float-right" onclick="markAsComplete(this)">Complete</button>
-    `;
+    function addTaskToDOM(task) {
+        const li = document.createElement("li");
+        li.className = `list-group-item ${task.priority}`;
+        li.innerHTML = `
+            <span class="task-title">${task.title}</span>
+            <span class="task-priority">Priority: ${task.priority}</span>
+            <span class="task-status">Status: ${task.status}</span>
+            <button class="btn btn-danger float-right remove-button">Remove</button>
+            <button class="btn btn-success float-right complete-button">Complete</button>
+        `;
 
-    if (task.status === "completed") {
-        li.style.textDecoration = "line-through";
+        if (task.status === "completed") {
+            li.style.textDecoration = "line-through";
+        }
+
+        taskList.appendChild(li);
     }
 
-    taskList.appendChild(li);
-}
+    taskList.addEventListener("click", function (e) {
+        if (e.target.classList.contains("remove-button")) {
+            removeTask(e.target.parentElement);
+        } else if (e.target.classList.contains("complete-button")) {
+            markAsComplete(e.target.parentElement);
+        }
+    });
 
-
-
-    function removeTask(button) {
-        const taskIndex = Array.from(taskList.children).indexOf(button.parentElement);
-        taskList.removeChild(button.parentElement);
+    function removeTask(taskElement) {
+        const taskIndex = Array.from(taskList.children).indexOf(taskElement);
+        taskList.removeChild(taskElement);
         tasks.splice(taskIndex, 1);
     }
 
-    function markAsComplete(button) {
-        const taskIndex = Array.from(taskList.children).indexOf(button.parentElement);
-        tasks[taskIndex].status = "completed";
-        button.parentElement.style.textDecoration = "line-through";
+    function markAsComplete(taskElement) {
+        const taskIndex = Array.from(taskList.children).indexOf(taskElement);
+        const task = tasks[taskIndex];
+        if (task.status === "completed") {
+            task.status = "pending";
+            taskElement.querySelector(".task-status").textContent = "Status: pending";
+            taskElement.style.textDecoration = "none";
+        } else {
+            task.status = "completed";
+            taskElement.querySelector(".task-status").textContent = "Status: completed";
+            taskElement.style.textDecoration = "line-through";
+        }
     }
 });
