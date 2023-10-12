@@ -23,22 +23,25 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    function addTaskToDOM(task) {
-        const li = document.createElement("li");
-        li.className = `list-group-item ${task.priority}`;
-        li.innerHTML = `
-            <span class="task-title">${task.title}</span>
-            <span class="task-priority">${task.priority}</span>
-            <button class="btn btn-danger float-right" onclick="removeTask(this)">Remove</button>
-            <button class="btn btn-success float-right" onclick="markAsComplete(this)">Complete</button>
-        `;
+   function addTaskToDOM(task) {
+    const li = document.createElement("li");
+    li.className = `list-group-item ${task.priority}`;
+    li.innerHTML = `
+        <span class="task-title">${task.title}</span>
+        <span class="task-priority">Priority: ${task.priority}</span>
+        <span class="task-status">Status: ${task.status}</span>
+        <button class="btn btn-danger float-right" onclick="removeTask(this)">Remove</button>
+        <button class="btn btn-success float-right" onclick="markAsComplete(this)">Complete</button>
+    `;
 
-        if (task.status === "completed") {
-            li.style.textDecoration = "line-through";
-        }
-
-        taskList.appendChild(li);
+    if (task.status === "completed") {
+        li.style.textDecoration = "line-through";
     }
+
+    taskList.appendChild(li);
+}
+
+
 
     function removeTask(button) {
         const taskIndex = Array.from(taskList.children).indexOf(button.parentElement);
