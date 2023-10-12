@@ -28,8 +28,8 @@ document.addEventListener("DOMContentLoaded", function () {
         li.className = `list-group-item ${task.priority}`;
         li.innerHTML = `
             ${task.title}
-            <span class="badge badge-danger float-right" onclick="removeTask(${tasks.length - 1})">Remove</span>
-            <span class="badge badge-success float-right" onclick="markAsComplete(${tasks.length - 1})">Complete</span>
+            <button class="btn btn-danger float-right" onclick="removeTask(this)">Remove</button>
+            <button class="btn btn-success float-right" onclick="markAsComplete(this)">Complete</button>
         `;
 
         if (task.status === "completed") {
@@ -39,13 +39,15 @@ document.addEventListener("DOMContentLoaded", function () {
         taskList.appendChild(li);
     }
 
-    function removeTask(index) {
-        taskList.removeChild(taskList.childNodes[index]);
-        tasks.splice(index, 1);
+    function removeTask(button) {
+        const taskIndex = Array.from(taskList.children).indexOf(button.parentElement);
+        taskList.removeChild(button.parentElement);
+        tasks.splice(taskIndex, 1);
     }
 
-    function markAsComplete(index) {
-        tasks[index].status = "completed";
-        taskList.childNodes[index].style.textDecoration = "line-through";
+    function markAsComplete(button) {
+        const taskIndex = Array.from(taskList.children).indexOf(button.parentElement);
+        tasks[taskIndex].status = "completed";
+        button.parentElement.style.textDecoration = "line-through";
     }
 });
