@@ -42,10 +42,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     taskList.addEventListener("click", function (e) {
+        const taskElement = e.target.closest("li");
+        if (!taskElement) return;
+
         if (e.target.classList.contains("remove-button")) {
-            removeTask(e.target.parentElement);
+            removeTask(taskElement);
         } else if (e.target.classList.contains("complete-button")) {
-            markAsComplete(e.target.parentElement);
+            markAsComplete(taskElement);
         }
     });
 
@@ -58,6 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function markAsComplete(taskElement) {
         const taskIndex = Array.from(taskList.children).indexOf(taskElement);
         const task = tasks[taskIndex];
+
         if (task.status === "completed") {
             task.status = "pending";
             taskElement.querySelector(".task-status").textContent = "Status: pending";
