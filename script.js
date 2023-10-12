@@ -27,7 +27,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const li = document.createElement("li");
         li.className = `list-group-item ${task.priority}`;
         li.innerHTML = `
-            ${task.title}
+            <span class="task-title">${task.title}</span>
+            <span class="task-priority">${task.priority}</span>
             <button class="btn btn-danger float-right" onclick="removeTask(this)">Remove</button>
             <button class="btn btn-success float-right" onclick="markAsComplete(this)">Complete</button>
         `;
