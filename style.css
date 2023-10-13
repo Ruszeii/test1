@@ -67,11 +67,11 @@ h1 {
 
 .remove-button:hover {
     background-color: red;
-    color: #fff;
+    color: white;
 }
 
 .complete-button:hover {
     background-color: green;
-    color: #fff;
+    color: white;
 }
 
